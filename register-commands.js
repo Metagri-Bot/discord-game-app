@@ -1,7 +1,7 @@
 /**
  * Discord スラッシュコマンド登録スクリプト
  *
- * このスクリプトを実行して、/play スラッシュコマンドを Discord に登録します。
+ * このスクリプトを実行して、/playgame スラッシュコマンドを Discord に登録します。
  * 初回のみ実行が必要です。
  *
  * 実行方法: node register-commands.js
@@ -48,7 +48,7 @@ const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
     );
 
     console.log('✅ スラッシュコマンドが正常に登録されました！');
-    console.log('💡 Discord サーバーで /play を入力して確認してください。');
+    console.log('💡 Discord サーバーで /playgame を入力して確認してください。');
     console.log('⚠️  反映には最大1時間かかる場合があります。');
   } catch (error) {
     console.error('❌ スラッシュコマンドの登録に失敗しました:', error);

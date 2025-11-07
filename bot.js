@@ -48,7 +48,7 @@ client.on("interactionCreate", async (interaction) => {
 
   try {
     // /play コマンドの処理
-    if (interaction.commandName === "play") {
+    if (interaction.commandName === "playgame") {
       await interaction.reply("🎮 Slash Command でゲーム開始！");
     }
   } catch (error) {
