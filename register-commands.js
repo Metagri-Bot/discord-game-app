@@ -16,7 +16,7 @@ dotenv.config();
 // 登録するスラッシュコマンドの定義
 const commands = [
   {
-    name: 'play',
+    name: 'playgame',
     description: 'ゲームを開始します',
   },
 ];

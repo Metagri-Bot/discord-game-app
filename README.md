@@ -191,7 +191,7 @@ dotenv.config();
 
 const commands = [
   {
-    name: 'play',
+    name: 'playgame',
     description: 'ゲームを開始します',
   },
 ];
