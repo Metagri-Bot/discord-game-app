@@ -1,23 +1,30 @@
 /**
  * クリックゲームコンポーネント
- * itch.io からクリックゲームを埋め込み表示
+ * ローカルのUnity WebGLビルドを埋め込み表示
  */
 export default function ClickGame() {
   return (
-    <div style={{ padding: "20px", textAlign: "center" }}>
-      <h2>🐄 クリックゲーム</h2>
+    <div style={{
+      width: "100vw",
+      height: "100vh",
+      margin: 0,
+      padding: 0,
+      overflow: "hidden",
+      backgroundColor: "#000000"
+    }}>
       <iframe
-        frameBorder="0"
-        src="https://itch.io/embed/3613266"
-        width="552"
-        height="167"
-        style={{ margin: "0 auto" }}
-        title="クリックゲーム by solsol08"
-      >
-        <a href="https://solsol08.itch.io/cattle-click-game">
-          クリックゲーム２ by solsol08
-        </a>
-      </iframe>
+        src="/ClickGame(Cattle)/index.html"
+        style={{
+          width: "100%",
+          height: "100%",
+          border: "none",
+          margin: 0,
+          padding: 0,
+          display: "block"
+        }}
+        title="クリックゲーム"
+        allowFullScreen
+      />
     </div>
   );
 }

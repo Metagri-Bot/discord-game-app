@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { DiscordSDK } from "@discord/embedded-app-sdk";
+import GameMenu from "./GameMenu.jsx";
 import ClickGame from "./ClickGame.jsx";
 import TypingGame from "./TypingGame.jsx";
 
@@ -78,7 +79,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<ClickGame />} />
+        <Route path="/" element={<GameMenu />} />
+        <Route path="/click" element={<ClickGame />} />
         <Route path="/typing" element={<TypingGame />} />
       </Routes>
     </BrowserRouter>
