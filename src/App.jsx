@@ -4,17 +4,34 @@ import { DiscordSDK } from "@discord/embedded-app-sdk";
 import ClickGame from "./ClickGame.jsx";
 import TypingGame from "./TypingGame.jsx";
 
-// Discord SDK インスタンスを初期化
-const discordSdk = new DiscordSDK(import.meta.env.VITE_DISCORD_CLIENT_ID);
-
 function App() {
-  const [isAuthorized, setIsAuthorized] = useState(false);
-  const [error, setError] = useState(null);
+  const [isReady, setIsReady] = useState(false);
+  const [isDiscordContext, setIsDiscordContext] = useState(false);
 
   useEffect(() => {
-    // Discord SDK の初期化と認証を実行
+    // Discord内で開かれたかどうかを検出
+    const checkDiscordContext = () => {
+      // URLに frame_id パラメータがあるかチェック
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.has('frame_id') || window.parent !== window;
+    };
+
+    const isInDiscord = checkDiscordContext();
+    setIsDiscordContext(isInDiscord);
+
+    // Discord SDK の初期化（Discord内の場合のみ）
     const initDiscord = async () => {
+      if (!isInDiscord) {
+        // Discord外で開かれた場合は、SDKなしで即座に表示
+        console.log("ℹ️ 通常のブラウザで開かれました。SDKなしで動作します。");
+        setIsReady(true);
+        return;
+      }
+
       try {
+        // Discord SDKインスタンスを初期化
+        const discordSdk = new DiscordSDK(import.meta.env.VITE_DISCORD_CLIENT_ID);
+
         // SDK の準備完了を待機
         await discordSdk.ready();
 
@@ -26,37 +43,38 @@ function App() {
         });
 
         console.log("✅ Discord SDK の準備と認証が完了しました");
-        setIsAuthorized(true);
+        setIsReady(true);
       } catch (err) {
         console.error("❌ Discord SDK の初期化に失敗しました:", err);
-        setError(err.message);
+        console.log("⚠️ SDKなしで続行します");
+        // エラーが発生してもゲームは表示する
+        setIsReady(true);
       }
     };
 
     initDiscord();
   }, []);
 
-  // エラーが発生した場合の表示
-  if (error) {
+  // 初期化中の表示
+  if (!isReady) {
     return (
-      <div style={{ padding: "20px", color: "red" }}>
-        <h2>エラーが発生しました</h2>
-        <p>{error}</p>
-        <p>Discord アプリ内で開いているか確認してください。</p>
+      <div style={{
+        padding: "20px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        minHeight: "100vh",
+        backgroundColor: "#2c2f33",
+        color: "#ffffff"
+      }}>
+        <h2>🎮 ゲームを読み込み中...</h2>
+        <p>{isDiscordContext ? "Discord SDK を初期化中..." : "ゲームを準備中..."}</p>
       </div>
     );
   }
 
-  // 認証中の表示
-  if (!isAuthorized) {
-    return (
-      <div style={{ padding: "20px" }}>
-        <p>Discord SDK を初期化中...</p>
-      </div>
-    );
-  }
-
-  // 認証完了後にゲームルーティングを表示
+  // ゲームルーティングを表示
   return (
     <BrowserRouter>
       <Routes>
