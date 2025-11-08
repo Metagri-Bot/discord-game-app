@@ -1,23 +1,30 @@
 /**
  * タイピングゲームコンポーネント
- * itch.io からタイピングゲームを埋め込み表示
+ * ローカルのUnity WebGLビルドを埋め込み表示
  */
 export default function TypingGame() {
   return (
-    <div style={{ padding: "20px", textAlign: "center" }}>
-      <h2>⌨️ タイピングゲーム</h2>
+    <div style={{
+      width: "100vw",
+      height: "100vh",
+      margin: 0,
+      padding: 0,
+      overflow: "hidden",
+      backgroundColor: "#000000"
+    }}>
       <iframe
-        frameBorder="0"
-        src="https://itch.io/embed/3605107"
-        width="552"
-        height="167"
-        style={{ margin: "0 auto" }}
-        title="タイピングゲーム by solsol08"
-      >
-        <a href="https://solsol08.itch.io/typing-game">
-          タイピングゲーム by solsol08
-        </a>
-      </iframe>
+        src="/TypingGame/index.html"
+        style={{
+          width: "100%",
+          height: "100%",
+          border: "none",
+          margin: 0,
+          padding: 0,
+          display: "block"
+        }}
+        title="タイピングゲーム"
+        allowFullScreen
+      />
     </div>
   );
 }
