@@ -49,7 +49,68 @@ client.on("interactionCreate", async (interaction) => {
   try {
     // /play または /playgame コマンドの処理
     if (interaction.commandName === "play" || interaction.commandName === "playgame") {
-      await interaction.reply("🎮 Slash Command でゲーム開始！");
+      await interaction.reply({
+        content: `🎮 **ゲームメニュー**\n\n遊びたいゲームを選んでください！`,
+        components: [
+          {
+            type: 1, // ACTION_ROW
+            components: [
+              {
+                type: 2, // BUTTON
+                style: 5, // LINK
+                label: "🐄 クリックゲーム",
+                url: "https://solsol08.itch.io/cattle-click-game",
+              },
+              {
+                type: 2, // BUTTON
+                style: 5, // LINK
+                label: "⌨️ タイピングゲーム",
+                url: "https://solsol08.itch.io/typing-game",
+              },
+            ],
+          },
+        ],
+      });
+    }
+
+    // /clickgame コマンドの処理
+    if (interaction.commandName === "clickgame") {
+      await interaction.reply({
+        content: "🐄 **クリックゲーム**\n\nカウをクリックしてスコアを稼ごう！",
+        components: [
+          {
+            type: 1,
+            components: [
+              {
+                type: 2,
+                style: 5,
+                label: "🎮 ゲームを開く",
+                url: "https://solsol08.itch.io/cattle-click-game",
+              },
+            ],
+          },
+        ],
+      });
+    }
+
+    // /typinggame コマンドの処理
+    if (interaction.commandName === "typinggame") {
+      await interaction.reply({
+        content: "⌨️ **タイピングゲーム**\n\nタイピングスキルを試そう！",
+        components: [
+          {
+            type: 1,
+            components: [
+              {
+                type: 2,
+                style: 5,
+                label: "🎮 ゲームを開く",
+                url: "https://solsol08.itch.io/typing-game",
+              },
+            ],
+          },
+        ],
+      });
     }
   } catch (error) {
     console.error("❌ インタラクション処理中にエラーが発生しました:", error);
