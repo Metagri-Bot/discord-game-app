@@ -4,7 +4,7 @@
   ],
   "headers": [
     {
-      "source": "/ClickGame(Cattle)/(.*).br",
+      "source": "/ClickGame\\(Cattle\\)/(.*).br",
       "headers": [
         {
           "key": "Content-Encoding",
@@ -31,7 +31,7 @@
       ]
     },
     {
-      "source": "/ClickGame(Cattle)/(.*).gz",
+      "source": "/ClickGame\\(Cattle\\)/(.*).gz",
       "headers": [
         {
           "key": "Content-Encoding",
@@ -58,7 +58,7 @@
       ]
     },
     {
-      "source": "/ClickGame(Cattle)/(.*).wasm.br",
+      "source": "/ClickGame\\(Cattle\\)/(.*).wasm.br",
       "headers": [
         {
           "key": "Content-Encoding",
@@ -97,7 +97,7 @@
       ]
     },
     {
-      "source": "/ClickGame(Cattle)/(.*).js.br",
+      "source": "/ClickGame\\(Cattle\\)/(.*).js.br",
       "headers": [
         {
           "key": "Content-Encoding",
