@@ -31,7 +31,7 @@ export default function GameMenu() {
         justifyContent: "center"
       }}>
         <button
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/ClickGame")}
           style={{
             width: "300px",
             height: "200px",

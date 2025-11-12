@@ -81,6 +81,7 @@ function App() {
       <Routes>
         <Route path="/" element={<GameMenu />} />
         <Route path="/click" element={<ClickGame />} />
+        <Route path="/ClickGame" element={<ClickGame />} />
         <Route path="/typing" element={<TypingGame />} />
       </Routes>
     </BrowserRouter>
